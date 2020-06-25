@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of the Veilleur project.
+ *
+ * (c) Lemay Marc <flugv1@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace Veilleur\Infrastructure\Symfony\Controller\Twitter;
@@ -16,31 +26,23 @@ use Veilleur\Domain\Repository\Twitter\Accounts;
  */
 class DeleteAccount
 {
-    /**
-     * @var Accounts
-     */
     private Accounts $accounts;
-    /**
-     * @var RouterInterface
-     */
+
     private RouterInterface $router;
-    /**
-     * @var MessageBusInterface
-     */
+
     private MessageBusInterface $bus;
-    
+
     public function __construct(Accounts $accounts, RouterInterface $router, MessageBusInterface $bus)
     {
         $this->accounts = $accounts;
         $this->router = $router;
         $this->bus = $bus;
     }
-    
+
     public function __invoke(Request $request)
     {
-        
         $this->bus->dispatch(new Delete($request->query->get('username')));
-        
+
         return new RedirectResponse($this->router->generate('twitter'));
     }
 }

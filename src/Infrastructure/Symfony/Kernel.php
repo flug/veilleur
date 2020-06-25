@@ -1,5 +1,16 @@
 <?php
 
+/*
+ * This file is part of the Veilleur project.
+ *
+ * (c) Lemay Marc <flugv1@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
 namespace Veilleur\Infrastructure\Symfony;
 
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
@@ -10,7 +21,7 @@ use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 class Kernel extends BaseKernel
 {
     use MicroKernelTrait;
-    
+
     protected function configureContainer(ContainerConfigurator $container): void
     {
         $container->import('../../../config/{packages}/*.yaml');
@@ -18,7 +29,7 @@ class Kernel extends BaseKernel
         $container->import('../../../config/{services}.yaml');
         $container->import('../../../config/{services}_'.$this->environment.'.yaml');
     }
-    
+
     protected function configureRoutes(RoutingConfigurator $routes): void
     {
         $routes->import('../../../config/{routes}/'.$this->environment.'/*.yaml');
@@ -26,4 +37,3 @@ class Kernel extends BaseKernel
         $routes->import('../../../config/{routes}.yaml');
     }
 }
-
