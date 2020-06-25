@@ -1,0 +1,46 @@
+<div class="Box ">
+    <div class="Box-header">
+        <h3 class="Box-title">
+            <div class="pagehead repohead experiment-repo-nav">
+                <div class="container-lg repohead-details-container px-3 clearfix">
+
+                    <div class="float-left">
+                                <span class="author">
+                                    <a href="#url" class="url fn"
+                                       rel="author">{{ repository.author }}</a></span>
+                        <span class="path-divider">/</span>
+                        <strong><a href="{{ repository.url }}">{{ repository.name }}</a></strong>
+                    </div>
+
+                    <ul class="pagehead-actions">
+                        <li>
+                            <div class="clearfix">
+                                <button class="btn btn-sm btn-with-count" href="#url" role="button">
+                                    <!-- <%= octicon("eye")%> -->
+                                    <svg class="octicon octicon-eye" viewBox="0 0 16 16" version="1.1" width="16"
+                                         height="16"
+                                         aria-hidden="true">
+                                        <path fill-rule="evenodd"
+                                              d="M8.06 2C3 2 0 8 0 8s3 6 8.06 6C13 14 16 8 16 8s-3-6-7.94-6zM8 12c-2.2 0-4-1.78-4-4 0-2.2 1.8-4 4-4 2.22 0 4 1.8 4 4 0 2.22-1.78 4-4 4zm2-4c0 1.11-.89 2-2 2-1.11 0-2-.89-2-2 0-1.11.89-2 2-2 1.11 0 2 .89 2 2z"></path>
+                                    </svg>
+                                    <span>{{ 'stars'|trans }}</span>
+                                </button>
+                                <button class="social-count" href="#url">{{ repository.stars }}</button>
+                            </div>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </h3>
+    </div>
+    <div class="Box-body">
+        {{ repository.description }}
+    </div>
+    <div class="Box-footer">
+        <span title="Label: outline label" class="Label Label--outline"
+              style="background-color: {{ repository.languageColor|default('') }}">
+            {{ repository.language|default('')   }}
+        </span>
+    </div>
+</div>

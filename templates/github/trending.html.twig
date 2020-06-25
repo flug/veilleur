@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container-lg clearfix">
+        <div class="col-4 float-left p-4">
+
+            <div class="Box Box--condensed">
+                <div class="Box-header">
+                    {{ 'languages' |trans }}
+                </div>
+                <ul>
+                    <li class="Box-row">
+                        <a href="{{ path('github_trending', app.request.query.all|merge({'language' : 'any'})) }}">
+                            {{ 'any'|trans|capitalize }}
+                        </a>
+                    </li>
+                    {% for language in languages %}
+                        <li class="Box-row">
+                            <a href="{{ path('github_trending', app.request.query.all|merge({'language' : language})) }}">
+                                {{ language|capitalize }}
+                            </a>
+                        </li>
+                    {% endfor %}
+
+                </ul>
+            </div>
+            <hr>
+
+
+            <div class="Box Box--condensed">
+                <div class="Box-header">
+                    {{ 'since' |trans }}
+                </div>
+                <ul>
+
+                    {% for s in since %}
+                        <li class="Box-row">
+                            <a href="{{ path('github_trending', app.request.query.all|merge({'since' : s})) }}">
+                                {{ s|capitalize }}
+                            </a>
+                        </li>
+                    {% endfor %}
+
+                </ul>
+            </div>
+        </div>
+        <div class="col-8 float-left p-2">
+            {% for repository in repositories %}
+                <div class="p-2">
+                    {% include 'github/repository/box.html.twig' %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
