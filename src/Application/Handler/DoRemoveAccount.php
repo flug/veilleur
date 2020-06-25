@@ -27,7 +27,7 @@ class DoRemoveAccount implements DoRemoveAccountInterface, MessageSubscriberInte
         $this->accounts = $accounts;
     }
 
-    public function __invoke(Delete $delete)
+    public function __invoke(Delete $delete): void
     {
         $account = $this->accounts->findOneByUsername($delete->getUsername());
         $this->accounts->remove($account);

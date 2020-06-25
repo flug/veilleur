@@ -27,7 +27,7 @@ class DoDoAddAccount implements AddAccountInterface, MessageSubscriberInterface
         $this->accounts = $accounts;
     }
 
-    public function __invoke(AddAccount $accountCommand)
+    public function __invoke(AddAccount $accountCommand): void
     {
         $account = $this->accounts->findOneByUsername($accountCommand->getUsername());
         if ($account instanceof \Veilleur\Domain\Model\Twitter\Account) {

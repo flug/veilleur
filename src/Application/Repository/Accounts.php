@@ -45,7 +45,7 @@ final class Accounts implements AccountsInterface
         $this->em->persist($account);
     }
 
-    public function remove(?Account $account)
+    public function remove(?Account $account): void
     {
         $this->em->remove($account);
     }
