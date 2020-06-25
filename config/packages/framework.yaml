@@ -1,5 +1,5 @@
 parameters:
-    frenquency_available: [daily, weekly , monthly]
+    frenquency_available: [today, daily, weekly , monthly]
     languages: '%env(json:VEILLEUR_REPOSITORY_LANGUAGE)%'
 
 # see https://symfony.com/doc/current/reference/configuration/framework.html

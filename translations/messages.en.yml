@@ -1,4 +1,6 @@
 languages: 'Languages'
 any: 'all'
 since: 'Since'
+twitter:
+    account: 'Account Twitter'
 

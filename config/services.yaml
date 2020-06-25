@@ -29,5 +29,17 @@ services:
         class: Symfony\Component\HttpClient\NativeHttpClient
         factory: ['@Veilleur\Infrastructure\Github\Trending\Client\Factory', create]
 
+    twitter.client.factory:
+        class: Abraham\TwitterOAuth\TwitterOAuth
+        factory: ['@Veilleur\Infrastructure\Twitter\Client\Factory', create]
+        arguments:
+            - '%env(TWITTER_CONSUMER_KEY)%'
+            - '%env(TWITTER_CONSUMER_SECRET)%'
+            - '%env(TWITTER_ACCESS_TOKEN_KEY)%'
+            - '%env(TWITTER_ACCESS_TOKEN_SECRET)%'
+
     Veilleur\Infrastructure\Github\Trending\Client:
         - '@github.client.factory'
+
+    Veilleur\Infrastructure\Twitter\Client:
+        - '@twitter.client.factory'

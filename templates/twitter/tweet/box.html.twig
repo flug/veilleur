@@ -1,0 +1,39 @@
+
+<div class="Box ">
+    <div class="Box-header">
+        <h3 class="Box-title">
+            <div class="pagehead repohead experiment-repo-nav">
+                <div class="container-lg repohead-details-container px-3 clearfix">
+
+                    <div class="float-left">
+                                <span class="author">
+                                    <a target="_blank" href="https://twitter.com/metalmumu/status/{{ tweet.id }}"
+                                       class="url fn"
+                                       rel="author">{{ tweet.user.name }}</a></span>
+                        <time datetime="{{ tweet.created_at|date }}">
+                            {{ tweet.created_at|date }}
+                        </time>
+                    </div>
+                    <div data-tweet-id="{{ tweet.id }}"></div>
+                </div>
+
+
+            </div>
+        </h3>
+    </div>
+    <div class="Box-body">
+        {{ tweet.full_text }}
+    </div>
+    <div class="Box-footer">
+        <ul class="tweet-list">
+
+
+            {% for url in tweet.entities.urls %}
+            <li>
+                <a target="_blank" href="{{ url.expanded_url}}">{{ url.display_url}}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</div>
