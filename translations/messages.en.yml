@@ -3,4 +3,5 @@ any: 'all'
 since: 'Since'
 twitter:
     account: 'Account Twitter'
-
+sort: 'messages'
+order: 'messages'

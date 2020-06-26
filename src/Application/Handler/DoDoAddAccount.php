@@ -16,6 +16,7 @@ namespace Veilleur\Application\Handler;
 use Symfony\Component\Messenger\Handler\MessageSubscriberInterface;
 use Veilleur\Domain\Command\Twitter\Account\Add as AddAccount;
 use Veilleur\Domain\Handler\Twitter\DoAddAccount as AddAccountInterface;
+use Veilleur\Domain\Model\Twitter\Account;
 use Veilleur\Domain\Repository\Twitter\Accounts as AccountsRepository;
 
 class DoDoAddAccount implements AddAccountInterface, MessageSubscriberInterface
@@ -30,10 +31,10 @@ class DoDoAddAccount implements AddAccountInterface, MessageSubscriberInterface
     public function __invoke(AddAccount $accountCommand): void
     {
         $account = $this->accounts->findOneByUsername($accountCommand->getUsername());
-        if ($account instanceof \Veilleur\Domain\Model\Twitter\Account) {
+        if ($account instanceof Account) {
             return;
         }
-        $account = new \Veilleur\Domain\Model\Twitter\Account($accountCommand->getUsername());
+        $account = new Account($accountCommand->getUsername());
         $this->accounts->persist($account);
     }
 

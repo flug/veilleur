@@ -1,6 +1,7 @@
 parameters:
     frenquency_available: [today, daily, weekly , monthly]
     languages: '%env(json:VEILLEUR_REPOSITORY_LANGUAGE)%'
+    github_sort: [stars, updated]
 
 # see https://symfony.com/doc/current/reference/configuration/framework.html
 framework:

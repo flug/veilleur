@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Twig\Environment;
-use Veilleur\Infrastructure\Github\Trending\Client as TrendingClient;
+use Veilleur\Infrastructure\Github\Client;
 use Veilleur\Infrastructure\Github\Trending\Query;
 
 /**
@@ -27,9 +27,9 @@ class Trending
 {
     private Environment $twig;
 
-    private TrendingClient $client;
+    private Client $client;
 
-    public function __construct(Environment $twig, TrendingClient $client)
+    public function __construct(Environment $twig, Client $client)
     {
         $this->twig = $twig;
         $this->client = $client;

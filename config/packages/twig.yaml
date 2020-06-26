@@ -3,3 +3,4 @@ twig:
     globals:
         since: '%frenquency_available%'
         languages: '%languages%'
+        github_sort: '%github_sort%'

@@ -11,15 +11,15 @@
 
 declare(strict_types=1);
 
-namespace Veilleur\Application\Repository;
+namespace Veilleur\Application\Repository\Github;
 
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Persistence\ObjectRepository;
-use Veilleur\Domain\Model\Twitter\Account;
-use Veilleur\Domain\Repository\Twitter\Accounts as AccountsInterface;
+use Veilleur\Domain\Model\Github\Topic;
+use Veilleur\Domain\Repository\Github\Topics as TopicsInterface;
 
-final class Accounts implements AccountsInterface
+final class Topics implements TopicsInterface
 {
     private ObjectManager $em;
     private ObjectRepository $innerRepository;
@@ -27,7 +27,7 @@ final class Accounts implements AccountsInterface
     public function __construct(ManagerRegistry $registry)
     {
         $this->em = $registry->getManager();
-        $this->innerRepository = $registry->getRepository(Account::class);
+        $this->innerRepository = $registry->getRepository(Topic::class);
     }
 
     public function findAll(): iterable
@@ -35,18 +35,23 @@ final class Accounts implements AccountsInterface
         return $this->innerRepository->findAll();
     }
 
-    public function findOneByUsername(string $username): ?Account
+    public function exists(string $text): bool
     {
-        return $this->innerRepository->find($username);
+        return $this->innerRepository->find($text) instanceof Topic;
     }
 
-    public function persist(Account $account): void
+    public function persist(Topic $topic): void
     {
-        $this->em->persist($account);
+        $this->em->persist($topic);
     }
 
-    public function remove(?Account $account): void
+    public function remove(Topic $topic): void
     {
-        $this->em->remove($account);
+        $this->em->remove($topic);
+    }
+
+    public function findOneByText(string $text): ?Topic
+    {
+        return $this->innerRepository->find($text);
     }
 }
