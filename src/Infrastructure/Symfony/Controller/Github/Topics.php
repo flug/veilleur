@@ -29,12 +29,9 @@ use Veilleur\Infrastructure\Github\Client;
 class Topics
 {
     private Environment $twig;
-
     private Client $client;
     private \Veilleur\Domain\Repository\Github\Topics $topics;
-
     private MessageBusInterface $bus;
-
     private RouterInterface $router;
 
     public function __construct(
@@ -61,9 +58,10 @@ class Topics
             );
         }
         $query = $request->query->get('query', $request->query->get('language', ''));
-        if ('' !== $request->query->get('language') && $request->query->has('query')) {
-            $query = $request->query->get('query', '').'+'.$request->query->get('query');
+        if (!empty($request->query->get('language')) && $request->query->has('query')) {
+            $query = $request->query->get('query', '').'+'.$request->query->get('language');
         }
+
         $repositories = $this->client->getTopics(
             $query,
             $request->query->get('s', 'updated'),
